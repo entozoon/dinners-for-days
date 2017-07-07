@@ -1,0 +1,21 @@
+@mixin btn($bg: white, $fg: black) {
+  color: $fg;
+  background: $bg;
+  border: 1px solid $fg;
+}
+.btn {
+  @include btn();
+  display: inline-block;
+  padding: 10px;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: 1px solid black;
+  user-select: none;
+  &:hover,
+  &:focus,
+  &:active {
+    @include btn(black, white);
+  }
+}

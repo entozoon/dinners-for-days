@@ -1,0 +1,21 @@
+$g: 30px;
+$brand-1: #009396;
+
+@import 'typography'; // I need to look into how these are typically structured
+@import 'user/user';
+
+body {
+  padding: 0;
+  color: #3c6abc;
+  margin: 0;
+  //background: #b38851;
+  //background: #edaf8e;
+  //background: #fcbea6;
+  background: #fcc6a6;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 10px;
+}

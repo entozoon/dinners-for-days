@@ -1,0 +1,14 @@
+.user {
+  &__logout {
+    display: flex;
+    > div {
+      &:nth-child(1) {
+        flex: 0 0 75%;
+      }
+      &:nth-child(2) {
+        flex: 0 0 25%;
+        text-align: right;
+      }
+    }
+  }
+}
