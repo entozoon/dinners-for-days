@@ -13,7 +13,7 @@ Save info about your meals and rate them!
 ## Deploying
 
   npm build
-  npm run deploy  or deployc, deployideal? erm ideal yeah
+  npm run deploy
 
 ## Troubleshooting
 
@@ -23,4 +23,9 @@ Save info about your meals and rate them!
 
 ## Tech
 
-- [create-react-app](https://github.com/facebookincubator/create-react-app) boilerplate to save bunch of time
+- [Create-react-app](https://github.com/facebookincubator/create-react-app) boilerplate to save bunch of time
+- [Firebase](dwa)
+- [Firebase UI](https://github.com/firebase/firebaseui-web)
+- [React](dwa)
+- [Node-sass](dwa)
+- [Clarifai](dwa)
