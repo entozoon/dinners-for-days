@@ -14,12 +14,18 @@ export default class App extends Component {
     };
   }
 
+  /**
+   * signedIn state (app-wide)
+   */
   signing(sign) {
     this.setState({
       signedIn: sign
     });
   }
 
+  /**
+   * user data state received after sign-in
+   */
   userData(user) {
     this.setState({
       user: user
@@ -36,6 +42,7 @@ export default class App extends Component {
             <div className="text-center">
               <h2>Boom, do your thing</h2>
             </div>
+
             <Upload />
           </div>}
       </div>

@@ -12,6 +12,8 @@ export default class Video extends React.Component {
   componentDidMount() {
     let that = this;
 
+    // Create video element which will contain a stream from the camera
+    // (webcam / phone / tablet rear cam)
     var video = document.getElementById('video');
 
     navigator.getMedia =
@@ -20,17 +22,18 @@ export default class Video extends React.Component {
       navigator.mozGetUserMedia ||
       navigator.msGetUserMedia;
 
+    // Grab the media source
     navigator.getMedia(
       {
         video: {
-          facingMode: 'environment', // rear camera
-          //width: 1280, // if it's portrait though, I mean, that's that
-          width: 720, // if it's portrait though, I mean, that's that
+          facingMode: 'environment', // Rear camera if available
+          width: 720, // NB: It won't necessarily obey these
           height: 720
         },
         audio: false
       },
       stream => {
+        // Pipe the stream into the video element source
         if (navigator.mozGetUserMedia) {
           video.mozSrcObject = stream;
         } else {
@@ -38,24 +41,23 @@ export default class Video extends React.Component {
           video.src = vendorURL.createObjectURL(stream);
         }
 
-        // When it starts playing, grab the width/height of the video stream
+        // When it starts playing, get the width/height of the video stream
         video.addEventListener('canplay', () => {
           //alert(video.videoWidth + ', ' + video.videoWidth);
-          //this.state.width = video.videoWidth;
-          //this.state.height = video.videoHeight;
+          // Set local state
           that.setState({
             width: video.videoWidth,
             height: video.videoHeight
           });
+          // Propagate up
           that.props.updated({
             width: video.videoWidth,
             height: video.videoHeight
           });
         });
 
-        video.src = window.URL.createObjectURL(stream);
-      },
-      erm => {}
+        //video.src = window.URL.createObjectURL(stream);
+      }
     );
   }
 

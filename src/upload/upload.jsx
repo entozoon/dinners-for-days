@@ -19,6 +19,10 @@ export default class Upload extends React.Component {
     };
   }
 
+  /**
+   * takePhoto
+   * Convert the video stream from camera into an image (via a canvas)
+   */
   takePhoto() {
     this.video = document.getElementById('video');
     this.canvas = document.getElementById('canvas');
@@ -33,10 +37,13 @@ export default class Upload extends React.Component {
     // Convert canvas to image data
     let data = this.canvas.toDataURL('image/png');
 
+    // Upload base64 image data
     this.uploadPhotoToDatabase(data);
 
-    // Brap it in an <img> element for now
+    // Brap it in an <img> element as a preview
     this.photo.setAttribute('src', data);
+
+    this.imageRecognition(data);
 
     this.setState({ photoTaken: true });
 
@@ -44,9 +51,13 @@ export default class Upload extends React.Component {
     document.body.classList.add('photo-taken');
   }
 
+  /**
+   * uploadPhotoToDatabase
+   * Push a new item to 'dinners/' and set the image data in place.
+   */
   uploadPhotoToDatabase(data) {
-    // Database structure, rough plan:
-    // Nice and flat as retrieving a data node fetches all child data too and it'll have images..
+    // Database structure, rough concept:
+    // (Nice and flat as retrieving a data node fetches all child data too and it'll have images)
     //
     // Users:
     //   ye78way87eywaue20: (unique ID key)
@@ -74,47 +85,33 @@ export default class Upload extends React.Component {
         image: data
       });
     });
-    /*
-    this.setState({ dinnerId: dinnersRef.push() });
-    this.state.dinnerId.set({
-      image: data
-    });
-    */
+  }
 
-    //
-    // This can all be async of course..
-    //
-    const app = new Clarifai.App({
+  imageRecognition(data) {
+    const clarifaiApp = new Clarifai.App({
       apiKey: 'aa4d7f9d292a4590a702f007e23b1384'
     });
 
+    // Strip the base64 prefix
     data = data.substr('data:image/png;base64,'.length);
 
     let that = this; // are we having fun yet?
 
-    app.models
+    clarifaiApp.models
       .predict(
         'bd367be194cf45149e75f01d59f77ba7', // Clarifai.FOOD_MODEL ?
-        // 'https://samples.clarifai.com/food.jpg'
+        // 'https://samples.clarifai.com/food.jpg' // Remote url can be passed here, alternatively
         { base64: data }
       )
       .then(
         function(response) {
-          // do something with response
-          //alert(response);
-          console.log(response);
-          console.log(response.outputs[0].data.concepts); // array of objects with name
+          // Whip out the basic 'concept' item names from the response into a state
           let concepts = response.outputs[0].data.concepts.map(item => {
             return item.name;
           });
           that.setState({ concepts: concepts });
-          console.log(concepts);
-          response.outputs[0].data.concepts.forEach(concept => {
-            //console.log(concept.name);
-          });
         },
         function(error) {
-          // there was an error
           console.log('Clarifai error: ');
           console.log(error);
         }
