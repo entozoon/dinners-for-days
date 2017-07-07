@@ -4,14 +4,15 @@ export default class Concepts extends React.Component {
     super(props);
   }
   render() {
+    // Return a nice little list of the concept items
     return (
-      <div>
+      <ul>
         {this.props.concepts.map((item, i) =>
-          <div key={i}>
+          <li key={i}>
             {item}
-          </div>
+          </li>
         )}
-      </div>
+      </ul>
     );
   }
 }

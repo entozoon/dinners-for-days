@@ -118,14 +118,21 @@ export default class Upload extends React.Component {
       );
   }
 
+  /**
+   * nameChange
+   * Updating the name of a dinner using the input updates the database
+   */
   nameChange(event) {
     this.state.dinnerId.update({
       name: event.target.value
     });
   }
 
+  /**
+   * videoUpdated
+   * Store video stream dimensions for whatever nefarious purposes I devise
+   */
   videoUpdated(size) {
-    //alert(JSON.stringify(size));
     this.setState({
       width: size.width,
       height: size.height
@@ -143,11 +150,6 @@ export default class Upload extends React.Component {
       errorHtml += '[' + this.state.error + ']';
     }
 
-    // RIGHT SO BASICALLY
-    // I can't have <video> here because, if it renders again.. it all fucks up.
-    // Need to be a standalone thing, or better yet a video react object..
-    //return false;
-    //return <video id="video" width="320" height="240" autoplay />;
     return (
       <div className="upload">
         {errorHtml
@@ -155,15 +157,20 @@ export default class Upload extends React.Component {
               {errorHtml}
             </div>
           : ''}
+
         <Video updated={this.videoUpdated.bind(this)} />
+
         <canvas id="canvas" className="photo photo--canvas" />
+
         <img id="photo" className="photo photo--img" alt="" />
         {!errorHtml && this.state.width !== 0 && !this.state.photoTaken
           ? <button className="btn" onClick={this.takePhoto.bind(this)}>
               Take photo
             </button>
           : ''}
+
         {this.state.dinnerId ? <input onChange={this.nameChange.bind(this)} /> : ''}
+
         {this.state.concepts.length ? <Concepts concepts={this.state.concepts} /> : ''}
       </div>
     );
