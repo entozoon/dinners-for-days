@@ -30,4 +30,4 @@ Make sure [gcloud SDK](https://cloud.google.com/sdk/downloads#interactive) bin s
 - [Firebase](https://firebase.google.com/) - Database
 - [Firebase UI](https://github.com/firebase/firebaseui-web)
 - [Clarifai](https://developer.clarifai.com/) - Image recognition
-- [node-sass-chokidar](https://github.com/michaelwayman/node-sass-chokidar) - SCSS -> CSS compilation
+- [node-sass](https://github.com/sass/node-sass) - SCSS -> CSS compilation
