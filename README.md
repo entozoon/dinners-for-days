@@ -1,4 +1,4 @@
-# [Dinners For Days.com](https://dinnersfordays.com) / [entozoon.github.io/dinners-for-days](https://entozoon.github.io/dinners-for-days)
+# [Dinners For Days](https://dinnersfordays.com)
 
 Save info about your meals and rate them!
 
