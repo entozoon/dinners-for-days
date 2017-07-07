@@ -55,6 +55,23 @@ h3 {
 .text-center {
   text-align: center; }
 
+.btn {
+  color: black;
+  background: white;
+  border: 1px solid black;
+  display: inline-block;
+  padding: 10px;
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: 1px solid black;
+  user-select: none; }
+  .btn:hover, .btn:focus, .btn:active {
+    color: white;
+    background: black;
+    border: 1px solid white; }
+
 .user__logout {
   display: flex; }
   .user__logout > div:nth-child(1) {
@@ -62,6 +79,25 @@ h3 {
   .user__logout > div:nth-child(2) {
     flex: 0 0 25%;
     text-align: right; }
+
+.upload {
+  text-align: center; }
+
+.photo {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px; }
+  .photo--canvas {
+    display: none; }
+  .photo--img {
+    height: 0;
+    opacity: 0;
+    transition: opacity 1s ease-out; }
+  .photo-taken .photo--video, .photo-taken .photo--canvas {
+    display: none; }
+  .photo-taken .photo--img {
+    height: auto;
+    opacity: 1; }
 
 body {
   padding: 0;

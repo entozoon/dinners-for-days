@@ -1,0 +1,25 @@
+.photo {
+  display: block;
+  width: 100%;
+  margin-bottom: $g * .5;
+  &--video {
+  }
+  &--canvas {
+    display: none;
+  }
+  &--img {
+    height: 0;
+    opacity: 0;
+    transition: opacity 1s ease-out;
+  }
+  .photo-taken & {
+    &--video,
+    &--canvas {
+      display: none;
+    }
+    &--img {
+      height: auto;
+      opacity: 1;
+    }
+  }
+}

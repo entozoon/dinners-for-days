@@ -2,7 +2,10 @@ $g: 30px;
 $brand-1: #009396;
 
 @import 'typography'; // I need to look into how these are typically structured
+@import 'button/button';
 @import 'user/user';
+@import 'upload/upload';
+@import 'upload/photo';
 
 body {
   padding: 0;
