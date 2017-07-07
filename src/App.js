@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Upload from './upload/upload';
 import './App.css';
 
 import './user/firebase';
@@ -35,6 +36,7 @@ export default class App extends Component {
             <div className="text-center">
               <h2>Boom, do your thing</h2>
             </div>
+            <Upload />
           </div>}
       </div>
     );
