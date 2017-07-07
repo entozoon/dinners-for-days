@@ -57,7 +57,8 @@ export default class Video extends React.Component {
         });
 
         //video.src = window.URL.createObjectURL(stream);
-      }
+      },
+      vestigial => {}
     );
   }
 
