@@ -1,0 +1,15 @@
+{
+  "users": {
+    "1": {
+      "displayName": "Myke",
+      "email": "entozoon@gmail.com",
+      "dinners": [1]
+    }
+  },
+  "dinners": {
+    "1": {
+      "name": "Fish and chips",
+      "rating": 4.5
+    }
+  }
+}
