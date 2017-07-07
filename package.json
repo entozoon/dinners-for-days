@@ -19,8 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "build-css": "node-sass src/ -o src/ --output-style compressed",
-    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive --output-style compressed",
+    "build-css": "node-sass src/app.scss --output src/ --output-style compressed",
+    "watch-css": "npm run build-css && node-sass src/app.scss --output src/ --watch --recursive --output-style compressed",
     "deploy": "gcloud app deploy && gcloud app browse",
     "local-https-proxy": "browser-sync start --proxy localhost:3000 --https true"
   }
