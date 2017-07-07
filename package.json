@@ -20,6 +20,7 @@
         "eject": "react-scripts eject",
         "build-css": "node-sass-chokidar src/ -o src/",
         "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-        "deploy": "gcloud app deploy && gcloud app browse"
+        "deploy": "gcloud app deploy && gcloud app browse",
+        "local-https-proxy": "browser-sync start --proxy localhost:3000 --https true"
     }
 }

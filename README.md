@@ -23,9 +23,9 @@ Save info about your meals and rate them!
 
 ## Tech
 
-- [Create-react-app](https://github.com/facebookincubator/create-react-app) boilerplate to save bunch of time
-- [Firebase](dwa)
+- [React](https://facebook.github.io/react/)
+- [Create-react-app](https://github.com/facebookincubator/create-react-app) - Boilerplate to save bunch of time
+- [Firebase](https://firebase.google.com/)
 - [Firebase UI](https://github.com/firebase/firebaseui-web)
-- [React](dwa)
-- [Node-sass](dwa)
-- [Clarifai](dwa)
+- [Clarifai](https://developer.clarifai.com/) - Image recognition
+- [node-sass-chokidar](https://github.com/michaelwayman/node-sass-chokidar)
