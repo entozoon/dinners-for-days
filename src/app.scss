@@ -1,7 +1,8 @@
 $g: 30px;
 $brand-1: #009396;
 
-@import 'typography'; // I need to look into how these are typically structured
+@import 'node_modules/simple-css-reset/reset';
+@import 'typography/typography';
 @import 'button/button';
 @import 'user/user';
 @import 'upload/upload';
@@ -9,16 +10,13 @@ $brand-1: #009396;
 
 body {
   padding: 0;
-  color: #3c6abc;
   margin: 0;
-  //background: #b38851;
-  //background: #edaf8e;
-  //background: #fcbea6;
+  color: #3c6abc;
   background: #fcc6a6;
 }
 
 .wrapper {
-  margin: 0 auto;
   max-width: 720px;
   padding: 10px;
+  margin: 0 auto;
 }
