@@ -2,13 +2,14 @@
 
 Save info about your meals and rate them!
 
-## Setup
+## Development
 
 	npm install
 	set HTTPS=true
 	npm start
+  https://[my-authenticated-domain].localhost:3001/
 
-(not just `npm start`, as we need https to use a camera)
+It is technically accessible at http://localhost but it needs both https in order to use the camera, and a specific subdomain as I can't leave the database open to access by localhost for obvious security reasons.
 
 ## Deploying
 

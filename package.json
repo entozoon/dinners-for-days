@@ -14,7 +14,7 @@
     "simple-css-reset": "^2.0.5"
   },
   "scripts": {
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "npm-run-all -p watch-css start-js local-https-proxy",
     "start-js": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
