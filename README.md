@@ -1,4 +1,4 @@
-# [Dinners For Days](https://dinnersfordays.com)
+# [DinnersForDays.com](https://dinnersfordays.com)
 
 Save info about your meals and rate them!
 
