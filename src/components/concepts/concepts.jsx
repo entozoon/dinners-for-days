@@ -1,8 +1,5 @@
 import React from 'react';
 export default class Concepts extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     // Return a nice little list of the concept items
     return (

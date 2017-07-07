@@ -3,7 +3,7 @@
     "1": {
       "displayName": "Myke",
       "email": "entozoon@gmail.com",
-      "dinners": [1]
+      "hasDinners": [1]
     }
   },
   "dinners": {

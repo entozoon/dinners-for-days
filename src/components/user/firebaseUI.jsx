@@ -18,17 +18,20 @@ export default class FirebaseUI extends Component {
     var that = this;
     var authUiConfig = {
       callbacks: {
+        // Signed in!
         signInSuccess: function(user) {
-          // Signed in!
+          // Save user data to database
+          that.dbSaveUser(user);
+
+          // Get user dinners and such
+          that.getUserContent(user);
+
           // Set the states for this fact and returned user data here, and..
           that.setState({ signedIn: true, user: user });
 
           // .. Run the passed prop functions in a similar vein
           that.props.signing(true);
           that.props.userData(user);
-
-          // Save user data to database
-          that.dbSaveUser(user);
         }
       },
       signInOptions: [
@@ -37,6 +40,19 @@ export default class FirebaseUI extends Component {
       ]
     };
     this.authUi.start('#firebaseui-auth', authUiConfig);
+  }
+
+  getUserContent(user) {
+    firebase.database().ref('users/' + user.uid).on(
+      'value',
+      function(snapshot) {
+        console.log(snapshot.val());
+        console.log('[^ At this point we need to get the hasDinners values]');
+      },
+      function(errorObject) {
+        console.log('The read failed: ' + errorObject.code);
+      }
+    );
   }
 
   /**

@@ -7,11 +7,12 @@ $g: 30px;
 $brand-1: #009396;
 
 @import 'node_modules/simple-css-reset/reset';
-@import 'typography/typography';
-@import 'button/button';
-@import 'user/user';
-@import 'upload/upload';
-@import 'upload/photo';
+@import 'components/typography/typography';
+@import 'components/button/button';
+@import 'components/user/user';
+@import 'components/upload/upload';
+@import 'components/upload/photo';
+@import 'components/dinners/dinners';
 
 body {
   padding: 0;

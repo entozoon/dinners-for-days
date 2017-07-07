@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import Upload from './upload/upload';
+import Upload from './components/upload/upload';
+import Dinners from './components/dinners/dinners';
 import './app.css';
 
-import './user/firebase';
-import FirebaseUI from './user/firebaseUI';
+import './components/user/firebase';
+import FirebaseUI from './components/user/firebaseUI';
 
 export default class App extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ export default class App extends Component {
 
             <Upload />
 
-            <Dinners />
+            <Dinners user={this.state.user} />
           </div>}
       </div>
     );
