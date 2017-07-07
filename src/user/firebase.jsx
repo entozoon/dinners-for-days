@@ -1,5 +1,10 @@
 import firebase from 'firebase';
 
+/**
+ * Firebase DB connection config
+ * No security issues here, as it's not a password situation;
+ * Domains are granted access in the Firebase console.
+ */
 var config = {
   apiKey: 'AIzaSyBcczhOPrrAHtVvkngWW0D2dodSKMTtLSE',
   authDomain: 'dinner-for-days.firebaseapp.com',
@@ -11,8 +16,9 @@ var config = {
 
 // eslint-disable-next-line
 var app = firebase.initializeApp(config);
-//var ref = firebase.database().ref('/44358340');
 
+/*
+// I don't .. think .. I need to use this callback as FirebaseUI sets a state instead
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
     console.log('logged in');
@@ -20,3 +26,4 @@ firebase.auth().onAuthStateChanged(user => {
     console.log('not logged in');
   }
 });
+*/

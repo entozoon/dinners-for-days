@@ -3,8 +3,6 @@ import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
-var authUi = new firebaseui.auth.AuthUI(firebase.auth());
-
 export default class FirebaseUI extends Component {
   constructor(props) {
     super(props);
@@ -12,20 +10,24 @@ export default class FirebaseUI extends Component {
       signedIn: false,
       user: null
     };
+    // Create the authUi instance with which to log in, out, shake it all about.
+    this.authUi = new firebaseui.auth.AuthUI(firebase.auth());
   }
 
   componentDidMount() {
     var that = this;
-    var uiConfig = {
+    var authUiConfig = {
       callbacks: {
         signInSuccess: function(user) {
-          that.setState({
-            signedIn: true,
-            user: user
-          });
+          // Signed in!
+          // Set the states for this fact and returned user data here, and..
+          that.setState({ signedIn: true, user: user });
+
+          // .. Run the passed prop functions in a similar vein
           that.props.signing(true);
           that.props.userData(user);
 
+          // Save user data to database
           that.dbSaveUser(user);
         }
       },
@@ -34,19 +36,27 @@ export default class FirebaseUI extends Component {
         firebase.auth.EmailAuthProvider.PROVIDER_ID
       ]
     };
-    authUi.start('#firebaseui-auth', uiConfig);
+    this.authUi.start('#firebaseui-auth', authUiConfig);
   }
 
-  componentWillUnmount() {
-    authUi.reset();
-  }
-
+  /**
+   * signOut
+   * Reset the authUI, set local states and similar prop functions
+   */
   signOut() {
-    authUi.reset();
-    this.setState({ signedIn: false });
+    this.authUi.reset();
+    this.setState({ signedIn: false, user: null });
     this.props.signing(false);
   }
 
+  componentWillUnmount() {
+    this.signOut();
+  }
+
+  /**
+   * dbSaveUser
+   * Save a simplified form of the given user data into firebase
+   */
   dbSaveUser(user) {
     let userInfo = {
       email: user.email ? user.email : null,
