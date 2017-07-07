@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './components/header/header';
 import Upload from './components/upload/upload';
 import Dinners from './components/dinners/dinners';
 import './app.css';
@@ -36,6 +37,8 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        {!this.state.signedIn && <Header />}
+
         <FirebaseUI signing={this.signing.bind(this)} userData={this.userData.bind(this)} />
         {this.state.signedIn &&
           this.state.user &&
