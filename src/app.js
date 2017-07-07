@@ -44,6 +44,8 @@ export default class App extends Component {
             </div>
 
             <Upload />
+
+            <Dinners />
           </div>}
       </div>
     );

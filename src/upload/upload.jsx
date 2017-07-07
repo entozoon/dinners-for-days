@@ -20,10 +20,10 @@ export default class Upload extends React.Component {
   }
 
   /**
-   * takePhoto
+   * convertVideoToImageData
    * Convert the video stream from camera into an image (via a canvas)
    */
-  takePhoto() {
+  convertVideoToImageData(data) {
     this.video = document.getElementById('video');
     this.canvas = document.getElementById('canvas');
     this.context = this.canvas.getContext('2d');
@@ -33,9 +33,14 @@ export default class Upload extends React.Component {
     this.canvas.width = this.state.width;
     this.canvas.height = this.state.height;
     this.context.drawImage(this.video, 0, 0, this.state.width, this.state.height);
+    return this.canvas.toDataURL('image/png');
+  }
 
-    // Convert canvas to image data
-    let data = this.canvas.toDataURL('image/png');
+  /**
+   * takePhoto
+   */
+  takePhoto() {
+    let data = this.convertVideoToImageData();
 
     // Upload base64 image data
     this.uploadPhotoToDatabase(data);
