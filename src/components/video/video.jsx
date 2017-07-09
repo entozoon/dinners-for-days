@@ -15,7 +15,7 @@ export default class Video extends React.Component {
     // Create video element which will contain a stream from the camera
     // (webcam / phone / tablet rear cam)
     var video = document.getElementById('video');
-    video.style.display = 'block';
+    video.removeAttribute('style'); // unhide
 
     navigator.getMedia =
       navigator.getUserMedia ||

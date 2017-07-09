@@ -39,15 +39,14 @@ export default class App extends Component {
       <div>
         {!this.state.signedIn && <Header />}
 
+        {this.state.signedIn && <Upload />}
+
         <FirebaseUI signing={this.signing.bind(this)} userData={this.userData.bind(this)} />
         {this.state.signedIn &&
-          this.state.user &&
           <div>
             <div className="text-center">
               <h2>Boom, do your thing</h2>
             </div>
-
-            <Upload />
 
             <Dinners user={this.state.user} />
           </div>}

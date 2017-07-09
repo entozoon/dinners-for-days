@@ -7,9 +7,9 @@ Save info about your meals and rate them!
 	npm install
 	set HTTPS=true
 	npm start
-  npm run https
+	npm run https
 
-Then close the localhost tab and change the yourauthenticatedsubdomain to that which is granted access by firebase.
+Then close the localhost tab and change the 'yourauthenticatedsubdomain' to that which is granted access by firebase.
 
 It is technically accessible at http://localhost but it needs both https in order to use the camera, and a specific subdomain as I can't leave the database open to access by localhost for obvious security reasons.
 
