@@ -46,11 +46,8 @@ export default class App extends Component {
           receivedUserData={this.receivedUserData.bind(this)}
         />
         {this.state.signedIn &&
+          this.state.user &&
           <div>
-            <div className="text-center">
-              <h2>Boom, do your thing</h2>
-            </div>
-
             <Dinners user={this.state.user} />
           </div>}
       </div>

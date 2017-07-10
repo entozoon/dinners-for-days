@@ -24,14 +24,14 @@ export default class User extends Component {
           that.dbSaveUser(user);
 
           // Get user dinners and such
-          that.getUserContent(user);
+          that.getUserContent(user).then(() => {
+            // .. Run the passed prop functions in a similar vein
+            that.props.signing(true);
+            that.props.receivedUserData(user);
+          });
 
           // Set the states for this fact and returned user data here, and..
           that.setState({ signedIn: true, user: user });
-
-          // .. Run the passed prop functions in a similar vein
-          that.props.signing(true);
-          that.props.receivedUserData(user);
         }
       },
       signInOptions: [
@@ -43,16 +43,25 @@ export default class User extends Component {
   }
 
   getUserContent(user) {
-    firebase.database().ref('users/' + user.uid).on(
-      'value',
-      function(snapshot) {
-        console.log(snapshot.val());
-        console.log('[^ At this point we need to get the hasDinners values]');
-      },
-      function(errorObject) {
-        console.log('The read failed: ' + errorObject.code);
-      }
-    );
+    var that = this;
+    return new Promise((resolve, reject) => {
+      firebase.database().ref('users/' + user.uid).on(
+        'value',
+        function(snapshot) {
+          //console.log(snapshot.val());
+          // Add the hasDinners values from db to user data in state
+          let user = that.state.user;
+          if (snapshot.val()['hasDinners']) {
+            user['hasDinners'] = snapshot.val()['hasDinners'];
+          }
+          that.setState({ user: user });
+          resolve();
+        },
+        function(errorObject) {
+          console.log('The read failed: ' + errorObject.code);
+        }
+      );
+    });
   }
 
   /**
@@ -93,7 +102,7 @@ export default class User extends Component {
         {this.state.signedIn &&
           <div className="user__logout">
             <div>
-              Welcome {this.state.user.displayName} (uid: {this.state.user.uid})
+              Welcome {this.state.user.displayName}
             </div>
             <div>
               <div onClick={this.signOut.bind(this)} className="btn">

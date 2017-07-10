@@ -64,7 +64,7 @@ export default class Upload extends React.Component {
 
   // Add dinner id to user's hasDinners array
   setHasDinnerForUser(id) {
-    firebase.database().ref('users/' + this.props.user.uid + '/hasDinners').push(id);
+    firebase.database().ref('users/' + this.props.user.uid + '/hasDinners/' + id).set(true);
   }
 
   /**

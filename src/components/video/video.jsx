@@ -5,7 +5,8 @@ export default class Video extends React.Component {
     super(props);
     this.state = {
       width: 0,
-      height: 0
+      height: 0,
+      error: null
     };
   }
 
@@ -60,12 +61,16 @@ export default class Video extends React.Component {
         //video.src = window.URL.createObjectURL(stream);
       },
       error => {
-        alert('Oops, there was an issue with your camera: ' + error.name);
+        that.setState({ error: 'Oops, there was an issue with your camera: ' + error.name });
       }
     );
   }
 
   render() {
-    return false;
+    return this.state.error
+      ? <div className="error">
+          {this.state.error}
+        </div>
+      : false;
   }
 }

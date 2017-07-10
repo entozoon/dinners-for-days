@@ -1,2 +1,19 @@
 .dinners {
+  padding: $g 0;
+}
+.dinner {
+  > div {
+    display: inline-block;
+  }
+  img {
+    display: block;
+  }
+  &__image {
+    width: 25%;
+  }
+  &__content {
+    padding: 5px 0 5px $g;
+    width: 75%;
+    vertical-align: top;
+  }
 }
