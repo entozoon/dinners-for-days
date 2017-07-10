@@ -26,7 +26,7 @@ Note: It is technically accessible at http://localhost but it needs both https i
 
 ## Deploying
 
-	npm build
+	npm run build
 	npm run deploy
 
 ## Troubleshooting
