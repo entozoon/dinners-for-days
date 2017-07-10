@@ -102,7 +102,7 @@ export default class User extends Component {
         {this.state.signedIn &&
           <div className="user__logout">
             <div>
-              Welcome {this.state.user.displayName}
+              Welcome, {this.state.user.displayName}!
             </div>
             <div>
               <div onClick={this.signOut.bind(this)} className="btn">

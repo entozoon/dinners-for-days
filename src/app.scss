@@ -5,8 +5,11 @@
 
 $g: 30px;
 $brand-1: #009396;
+$brand-2: #fcc6a6;
+$brand-3: #b3598f;
 
 @import 'node_modules/simple-css-reset/reset';
+@import 'node_modules/font-awesome/scss/variables';
 @import 'components/typography/typography';
 @import 'components/button/button';
 @import 'components/user/user';
@@ -19,7 +22,7 @@ body {
   padding: 0;
   margin: 0;
   color: #3c6abc;
-  background: #fcc6a6;
+  background: $brand-2;
 }
 
 .wrapper {

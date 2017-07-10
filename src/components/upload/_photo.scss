@@ -1,9 +1,9 @@
 .photo {
   display: block;
   width: 100%;
-  margin-bottom: $g * .5;
+  margin-bottom: 5px;
   &--video {
-    border: 1px solid gray;
+    background: adjust-color($brand-2, $lightness: -5);
   }
   &--canvas {
     display: none;

@@ -188,9 +188,7 @@ export default class Upload extends React.Component {
 
         <img id="photo" className="photo photo--img" alt="" />
         {!errorHtml && this.state.width !== 0 && !this.state.photoTaken
-          ? <button className="btn" onClick={this.takePhoto.bind(this)}>
-              Take photo
-            </button>
+          ? <button className="btn--photo" onClick={this.takePhoto.bind(this)} />
           : ''}
 
         {this.state.dinnerRef ? <input onChange={this.nameChange.bind(this)} /> : ''}

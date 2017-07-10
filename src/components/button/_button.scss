@@ -1,21 +1,34 @@
-@mixin btn($bg: white, $fg: black) {
+@mixin btn-colors($bg, $fg) {
   color: $fg;
   background: $bg;
   border: 1px solid $fg;
 }
-.btn {
-  @include btn();
+@mixin btn($bg: white, $fg: black) {
+  @include btn-colors($bg, $fg);
   display: inline-block;
   padding: 10px;
   line-height: 1;
   text-align: center;
   cursor: pointer;
-  background: none;
-  border: 1px solid black;
+  border: 1px solid;
   user-select: none;
   &:hover,
   &:focus,
   &:active {
-    @include btn(black, white);
+    @include btn-colors($fg, $bg);
   }
+}
+.btn {
+  @include btn($brand-3, $brand-2);
+}
+.btn--photo {
+  @include btn();
+  @include fa($fa-var-camera);
+  padding: 15px;
+  margin: 0;
+  font-size: 24px;
+  background: none;
+  text-shadow: 0 0 5px white, 0 0 5px white;
+  border-radius: 50%;
+  box-shadow: inset 0 0 10px 1px white;
 }

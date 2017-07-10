@@ -1,5 +1,7 @@
 .dinners {
-  padding: $g 0;
+  float: left;
+  padding: $g * .5 0;
+  width: 100%;
 }
 .dinner {
   > div {
@@ -12,8 +14,8 @@
     width: 25%;
   }
   &__content {
-    padding: 5px 0 5px $g;
     width: 75%;
+    padding: 5px 0 5px $g;
     vertical-align: top;
   }
 }

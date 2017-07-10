@@ -1,5 +1,6 @@
 .user {
   &__logout {
+    /*
     display: flex;
     > div {
       &:nth-child(1) {
@@ -10,5 +11,8 @@
         text-align: right;
       }
     }
+    */
+    float: right;
+    text-align: right;
   }
 }

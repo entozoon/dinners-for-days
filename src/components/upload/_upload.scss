@@ -1,3 +1,10 @@
 .upload {
-  text-align: center
+  position: relative;
+  text-align: center;
+
+  .btn--photo {
+    position: absolute;
+    right: $g * .5;
+    bottom: $g * .5;
+  }
 }
