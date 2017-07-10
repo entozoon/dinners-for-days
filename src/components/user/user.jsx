@@ -31,7 +31,7 @@ export default class User extends Component {
 
           // .. Run the passed prop functions in a similar vein
           that.props.signing(true);
-          that.props.userData(user);
+          that.props.receivedUserData(user);
         }
       },
       signInOptions: [
@@ -78,8 +78,8 @@ export default class User extends Component {
       email: user.email ? user.email : null,
       displayName: user.displayName ? user.displayName : null
     };
-    // Overrides any data given, which is cool for us
-    firebase.database().ref('users/' + user.uid).set(userInfo);
+    // Overrides any key data given, which is cool for us
+    firebase.database().ref('users/' + user.uid).update(userInfo);
   }
 
   render() {
