@@ -5,7 +5,7 @@ import Dinners from './components/dinners/dinners';
 import './app.css';
 
 import './components/user/firebase';
-import FirebaseUI from './components/user/firebaseUI';
+import User from './components/user/user';
 
 export default class App extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ export default class App extends Component {
 
         {this.state.signedIn && <Upload />}
 
-        <FirebaseUI signing={this.signing.bind(this)} userData={this.userData.bind(this)} />
+        <User signing={this.signing.bind(this)} userData={this.userData.bind(this)} />
         {this.state.signedIn &&
           <div>
             <div className="text-center">

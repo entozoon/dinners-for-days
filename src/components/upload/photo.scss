@@ -3,6 +3,7 @@
   width: 100%;
   margin-bottom: $g * .5;
   &--video {
+    border: 1px solid gray;
   }
   &--canvas {
     display: none;

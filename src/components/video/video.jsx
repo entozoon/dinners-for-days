@@ -14,8 +14,8 @@ export default class Video extends React.Component {
 
     // Create video element which will contain a stream from the camera
     // (webcam / phone / tablet rear cam)
-    var video = document.getElementById('video');
-    video.removeAttribute('style'); // unhide
+    let video = document.getElementById('video');
+    video.style.display = null;
 
     navigator.getMedia =
       navigator.getUserMedia ||
@@ -28,8 +28,8 @@ export default class Video extends React.Component {
       {
         video: {
           facingMode: 'environment', // Rear camera if available
-          width: 720, // NB: It won't necessarily obey these
-          height: 720
+          width: 720 // NB: It won't necessarily obey these
+          //height: 720
         },
         audio: false
       },
@@ -59,7 +59,9 @@ export default class Video extends React.Component {
 
         //video.src = window.URL.createObjectURL(stream);
       },
-      vestigial => {}
+      error => {
+        alert('Oops, there was an issue with your camera: ' + error.name);
+      }
     );
   }
 

@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
-export default class FirebaseUI extends Component {
+export default class User extends Component {
   constructor(props) {
     super(props);
     this.state = {

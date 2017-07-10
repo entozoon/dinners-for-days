@@ -43,7 +43,9 @@ export default class Upload extends React.Component {
     let data = this.convertVideoToImageData();
 
     // Upload base64 image data
-    this.uploadPhotoToDatabase(data);
+    this.uploadPhotoToDatabase(data).then(id => {
+      this.setHasDinnerForUser(id);
+    });
 
     // Brap it in an <img> element as a preview
     this.photo.setAttribute('src', data);
@@ -61,35 +63,46 @@ export default class Upload extends React.Component {
    * Push a new item to 'dinners/' and set the image data in place.
    */
   uploadPhotoToDatabase(data) {
-    // Database structure, rough concept:
-    // (Nice and flat as retrieving a data node fetches all child data too and it'll have images)
-    //
-    // Users:
-    //   ye78way87eywaue20: (unique ID key)
-    //     name: 'entozoon'
-    //     email: 'entozoon@gmail.com'
-    //     dinners: [1, 2]
-    //
-    // Dinners:
-    //   1timestamp1: (push generated key)
-    //     name: 'fish and chips'
-    //     rating: 4.5
-    //     image: 'data:image/png;base64,iVBORw0KGgoAAA'
-    //     date: 2017-03-05 12:00pm
-    //   2timestamp2:
-    //     name: 'fish and pips'
-    //     rating: 0.5
-    //     image: 'data:image/png;base64,iVBORw0KGgoAAB'
-    //     date: 2017-03-05 12:10pm
-    //
+    return new Promise((resolve, reject) => {
+      // Database structure, rough concept:
+      // (Nice and flat as retrieving a data node fetches all child data too and it'll have images)
+      //
+      // Users:
+      //   ye78way87eywaue20: (unique ID key)
+      //     name: 'entozoon'
+      //     email: 'entozoon@gmail.com'
+      //     dinners: [1, 2]
+      //
+      // Dinners:
+      //   1timestamp1: (push generated key)
+      //     name: 'fish and chips'
+      //     rating: 4.5
+      //     image: 'data:image/png;base64,iVBORw0KGgoAAA'
+      //     date: 2017-03-05 12:00pm
+      //   2timestamp2:
+      //     name: 'fish and pips'
+      //     rating: 0.5
+      //     image: 'data:image/png;base64,iVBORw0KGgoAAB'
+      //     date: 2017-03-05 12:10pm
+      //
 
-    let dinnersRef = firebase.database().ref('dinners/');
-    dinnersRef.push().then(id => {
-      this.setState({ dinnerId: id });
-      this.state.dinnerId.set({
-        image: data
+      let dinnersRef = firebase.database().ref('dinners/');
+      dinnersRef.push().then(snapshot => {
+        const id = snapshot.key;
+        this.setState({ dinnerId: id });
+        snapshot.set({
+          image: data
+        });
+        resolve(id);
       });
     });
+  }
+
+  setHasDinnerForUser(id) {
+    alert('Boom, image uploaded with id: ' + id);
+    console.log(
+      'This needs to invoke a function in user.jsx to this id to the user\'s hasDinners array'
+    );
   }
 
   imageRecognition(data) {

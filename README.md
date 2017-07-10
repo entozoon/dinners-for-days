@@ -9,9 +9,20 @@ Save info about your meals and rate them!
 	npm start
 	npm run https
 
-Then close the localhost tab and change the 'yourauthenticatedsubdomain' to that which is granted access by firebase.
 
-It is technically accessible at http://localhost but it needs both https in order to use the camera, and a specific subdomain as I can't leave the database open to access by localhost for obvious security reasons.
+### Desktop Testing (webcam)
+
+  https://yourauthenticatedsubdomain.localhost:3001/
+
+Change 'yourauthenticatedsubdomain' to that which is granted access by firebase.
+
+### Mobile Testing
+
+  https://yourlocalIP:3001/
+
+You will need to be granted access by firebase to use this during development.
+
+Note: It is technically accessible at http://localhost but it needs both https in order to use the camera, and a specific subdomain, as I can't leave the database open to access by localhost for obvious security reasons.
 
 ## Deploying
 
