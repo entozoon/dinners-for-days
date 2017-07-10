@@ -28,7 +28,7 @@ export default class App extends Component {
   /**
    * user data state received after sign-in
    */
-  userData(user) {
+  receivedUserData(user) {
     this.setState({
       user: user
     });
@@ -39,9 +39,12 @@ export default class App extends Component {
       <div>
         {!this.state.signedIn && <Header />}
 
-        {this.state.signedIn && <Upload />}
+        {this.state.signedIn && <Upload user={this.state.user} />}
 
-        <User signing={this.signing.bind(this)} userData={this.userData.bind(this)} />
+        <User
+          signing={this.signing.bind(this)}
+          receivedUserData={this.receivedUserData.bind(this)}
+        />
         {this.state.signedIn &&
           <div>
             <div className="text-center">

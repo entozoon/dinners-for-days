@@ -15,7 +15,9 @@ export default class Upload extends React.Component {
       height: 0,
       concepts: [],
       name: '',
-      dinnerId: null
+      dinnerRef: null,
+      dinnerId: null,
+      userData: null
     };
   }
 
@@ -44,6 +46,8 @@ export default class Upload extends React.Component {
 
     // Upload base64 image data
     this.uploadPhotoToDatabase(data).then(id => {
+      //alert('Boom, image uploaded with id: ' + id);
+
       this.setHasDinnerForUser(id);
     });
 
@@ -56,6 +60,11 @@ export default class Upload extends React.Component {
 
     // Add class to body, as the <video> element for camera is outside of the app
     document.body.classList.add('photo-taken');
+  }
+
+  // Add dinner id to user's hasDinners array
+  setHasDinnerForUser(id) {
+    firebase.database().ref('users/' + this.props.user.uid + '/hasDinners').push(id);
   }
 
   /**
@@ -71,38 +80,35 @@ export default class Upload extends React.Component {
       //   ye78way87eywaue20: (unique ID key)
       //     name: 'entozoon'
       //     email: 'entozoon@gmail.com'
-      //     dinners: [1, 2]
+      //     hasDinners: [timestampId1]
       //
       // Dinners:
-      //   1timestamp1: (push generated key)
+      //   timestampId1: (push generated key)
       //     name: 'fish and chips'
       //     rating: 4.5
       //     image: 'data:image/png;base64,iVBORw0KGgoAAA'
       //     date: 2017-03-05 12:00pm
-      //   2timestamp2:
+      //   timestampId2:
       //     name: 'fish and pips'
       //     rating: 0.5
       //     image: 'data:image/png;base64,iVBORw0KGgoAAB'
       //     date: 2017-03-05 12:10pm
+      //     notes: 'who on earth likes pips?!'
       //
 
       let dinnersRef = firebase.database().ref('dinners/');
       dinnersRef.push().then(snapshot => {
         const id = snapshot.key;
-        this.setState({ dinnerId: id });
+        this.setState({
+          dinnerRef: snapshot,
+          dinnerId: id
+        });
         snapshot.set({
           image: data
         });
         resolve(id);
       });
     });
-  }
-
-  setHasDinnerForUser(id) {
-    alert('Boom, image uploaded with id: ' + id);
-    console.log(
-      'This needs to invoke a function in user.jsx to this id to the user\'s hasDinners array'
-    );
   }
 
   imageRecognition(data) {
@@ -141,7 +147,7 @@ export default class Upload extends React.Component {
    * Updating the name of a dinner using the input updates the database
    */
   nameChange(event) {
-    this.state.dinnerId.update({
+    this.state.dinnerRef.update({
       name: event.target.value
     });
   }
@@ -187,7 +193,7 @@ export default class Upload extends React.Component {
             </button>
           : ''}
 
-        {this.state.dinnerId ? <input onChange={this.nameChange.bind(this)} /> : ''}
+        {this.state.dinnerRef ? <input onChange={this.nameChange.bind(this)} /> : ''}
 
         {this.state.concepts.length ? <Concepts concepts={this.state.concepts} /> : ''}
       </div>
