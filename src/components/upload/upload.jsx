@@ -146,7 +146,7 @@ export default class Upload extends React.Component {
    * nameChange
    * Updating the name of a dinner using the input updates the database
    */
-  nameChange(event) {
+  changeName(event) {
     this.state.dinnerRef.update({
       name: event.target.value
     });
@@ -191,7 +191,7 @@ export default class Upload extends React.Component {
           ? <button className="btn--photo" onClick={this.takePhoto.bind(this)} />
           : ''}
 
-        {this.state.dinnerRef ? <input onChange={this.nameChange.bind(this)} /> : ''}
+        {this.state.dinnerRef ? <input onChange={this.changeName.bind(this)} /> : ''}
 
         {this.state.concepts.length ? <Concepts concepts={this.state.concepts} /> : ''}
       </div>

@@ -15,7 +15,38 @@
   }
   &__content {
     width: 75%;
-    padding: 5px 0 5px $g;
+    padding: 0 0 0 $g * .5;
     vertical-align: top;
+
+    .form-group {
+      position: relative;
+      i {
+        $size: 18px;
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        margin-top: - $size * .6;
+        font-size: $size;
+        line-height: 1;
+        @include fa($fa-var-pencil, after) {
+        }
+      }
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 5px 10px;
+      background: rgba(white, 0.25);
+      transition: background .1s ease-out;
+      &:focus,
+      &:active {
+        background: rgba(white, 0.75);
+        outline: none;
+        + i {
+          display: none;
+        }
+      }
+    }
   }
 }
